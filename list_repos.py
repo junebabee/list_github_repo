@@ -10,10 +10,17 @@ Created on Fri Feb  2 22:36:46 2018
 
 import requests
 
+def try_again():
+    try_again = raw_input('Do you want to try again? (Y/N):')
+    if try_again.upper()[0] == 'Y': 
+        Get_User = raw_input('Please enter a github user name:')  
+        Get_Repo(Get_User)
+    else:
+        return
+    
 Get_User = raw_input('Please enter a github user name:')
 
 def Get_Repo(Get_User):
-
     url = 'https://api.github.com/users/'+ Get_User +'/repos'
     repo = requests.get(url).json()
     response = requests.get(url)
@@ -23,7 +30,9 @@ def Get_Repo(Get_User):
             i += 1
     elif response.status_code == 404:
         print 'No user exist!'
-        Get_User = raw_input('Please enter a github user name:')  
-        Get_Repo(Get_User)
+        try_again()
+    else:
+        print 'Oops! something is wrong!'
+        try_again()
         
 Get_Repo(Get_User)
