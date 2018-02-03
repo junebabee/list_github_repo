@@ -11,11 +11,11 @@ Created on Fri Feb  2 22:36:46 2018
 import requests
 
 Get_User = raw_input('Please enter a github user name:')
+
 def Get_Repo(Get_User):
 
     url = 'https://api.github.com/users/'+ Get_User +'/repos'
-    headers = {"Authorization":"token 904fa4da5d57f00934af64f68de1d2345efcdea2"} 
-    repo = requests.get(url,headers = headers).json()
+    repo = requests.get(url).json()
     response = requests.get(url)
     if response.status_code == 200:
         for i in range(0,len(repo)):
