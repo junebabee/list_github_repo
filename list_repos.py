@@ -25,6 +25,9 @@ def Get_Repo(Get_User):
     repo = requests.get(url).json()
     response = requests.get(url)
     if response.status_code == 200:
+        list_name = 'List of ' + Get_User + "'s public repository:"
+        print list_name
+        print '-' * len(list_name)
         for i in range(0,len(repo)):
             print repo[i]['name']
             i += 1
